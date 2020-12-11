@@ -15,7 +15,7 @@ from urllib.parse import urlparse, parse_qs
  After saving get the client_id and key
 """
 
-with open('oauth_settings.json') as f:
+with open('../oauth_settings.json') as f:
   js = json.load(f)
 
 url_scope = "+".join(js["scopes"])

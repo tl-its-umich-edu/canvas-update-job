@@ -1,4 +1,5 @@
-# Updating MWrite LTI links courses and assignments in sites
+# Update Script for Accounts Discovery URL
+
 import json
 import logging
 
@@ -43,7 +44,10 @@ def update_discovery_url(api_url: str):
                                      OAUTH.get("client_id"), OAUTH.get("client_secret"), OAUTH.get("redirect_uri"))
         CANVAS = Canvas(api_url, access_token)
         account = CANVAS.get_account(1)
-        print(account)
-        #    account.update_account_auth_settings(sso_settings={"auth_discovery_url":""})
 
+        # TODO: Make this URL configurable
+        account.update_account_auth_settings(
+            sso_settings={"auth_discovery_url": ""})
+
+# TODO: Make this URL configurable
 update_discovery_url("https://umich.beta.instructure.com")
