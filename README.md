@@ -11,13 +11,6 @@ To use this script you need two files
     * url:PUT|/api/v1/accounts/:account_id/sso_settings 
     * url:GET|/api/v1/accounts/:id
 
-1. Create Canvas Developer API key. Because this is intended to be run only on test you can check "Test Cluster Only". This needs to be run in **production** first and you'll need to wait a few weeks for it to populate to test/beta.
-1. Assign the scopes you need
-1. The url probably needs to be production, if you set this up in test/beta it will be erased on the next refresh. 
-1. Populate the values in this configuration file and save it.
-1. redirect_uri can be most things but this example URI is something that will give a response.
-1. After you've created this file, run the canvas_oauth.py in util and go through the steps to get canvas_token.json
-
 ```json
     {
     "client_id": "client_id #",
@@ -29,6 +22,13 @@ To use this script you need two files
         ]
     }
 ```
+
+1. Create Canvas Developer API key. Because this is intended to be run only on test you can check "Test Cluster Only". This needs to be run in **production** first and you'll need to wait a few weeks for it to populate to test/beta.
+1. Assign the scopes you need
+1. The url probably needs to be production, if you set this up in test/beta it will be erased on the next refresh. 
+1. Populate the values in this configuration file and save it.
+1. redirect_uri can be most things but this example URI is something that will give a response.
+1. After you've created this file, run the canvas_oauth.py in util and go through the steps to get canvas_token.json
 
 * `canvas_token.json`
 This is file contains the access and refresh token json from the `util/canvas_oauth.py` script. Use "as-is".  You'll want to run this against production Canvas first, then it will also be available in test/beta.

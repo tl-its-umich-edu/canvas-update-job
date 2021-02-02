@@ -31,7 +31,7 @@ def refresh_token(api_url: str, refresh_token: str, client_id: str, client_secre
 def update_discovery_url(api_url: str):
     with open("canvas_token.json") as token_file:
         TOKEN = json.load(token_file)
-    with open("oauth_Settings.json") as oauth_file:
+    with open("oauth_settings.json") as oauth_file:
         OAUTH = json.load(oauth_file)
 
     access_token = TOKEN.get("access_token")
@@ -51,3 +51,4 @@ def update_discovery_url(api_url: str):
 
 # TODO: Make this URL configurable
 update_discovery_url("https://umich.beta.instructure.com")
+update_discovery_url("https://umich.test.instructure.com")

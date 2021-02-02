@@ -1,0 +1,9 @@
+{
+    "client_id": "client_id #",
+    "client_secret": "client secret",
+    "url": "https://umich.instructure.com/login/oauth2",
+    "redirect_uri": "https://example.com/oauth_complete",
+    "scopes": ["url:PUT|/api/v1/accounts/:account_id/sso_settings", 
+          "url:GET|/api/v1/accounts/:id"
+    ]
+}
