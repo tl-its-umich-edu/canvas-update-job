@@ -15,6 +15,21 @@ from urllib.parse import urlparse, parse_qs
  After saving get the client_id and key
 """
 
+def debug_http_client():
+    try:
+        import http.client as http_client
+    except ImportError:
+        # Python 2
+        import httplib as http_client
+    http_client.HTTPConnection.debuglevel = 1
+
+    # You must initialize logging, otherwise you'll not see debug output.
+    logging.basicConfig()
+    logging.getLogger().setLevel(logging.DEBUG)
+    requests_log = logging.getLogger("requests.packages.urllib3")
+    requests_log.setLevel(logging.DEBUG)
+    requests_log.propagate = True
+
 with open('../oauth_settings.json') as f:
   js = json.load(f)
 
@@ -26,6 +41,7 @@ auth_response = input('Copy/Paste the full callback URL:')
 
 auth_code = parse_qs(urlparse(auth_response).query).get("code")
 
+print (f"Parsed code is {auth_code}")
 """
 oauth2_get = {
         'client_id': js['client_id'],
@@ -47,10 +63,12 @@ oauth2_post = {
     'client_id': js['client_id'],
     'client_secret': js['client_secret'],
     'redirect_uri': js['redirect_uri'],
-    'code': auth_code,
-#    'replace_tokens': True
+    'code': auth_code
     }
 
 res = (requests.post(js['url']+"/token", data=oauth2_post))
-print ("This is your token, place this in a JSON file")
-print (res.text)
+if (res.status_code != 200):
+    print (f"There was an error retrieving the token of {res.url}")
+else:
+    print ("This is your token, place this in a JSON file")
+    print (res.text)
