@@ -9,9 +9,9 @@ from canvasapi import Canvas
 from canvasapi.exceptions import ResourceDoesNotExist, InvalidAccessToken
 import requests
 
-logging.basicConfig(level=logging.DEBUG)
+# Set this to DEBUG for more information
+logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
-log.setLevel(logging.INFO)
 
 def refresh_token(api_url: str, refresh_token: str, client_id: str, client_secret: str, redirect_uri: str) -> str:
     access_token = requests.post(api_url+"/login/oauth2/token",
@@ -66,6 +66,6 @@ if not os.path.isfile(args.oauth_settings):
 
 # TODO: Make this URL configurable?
 update_discovery_url("https://umich.beta.instructure.com", "")
-update_discovery_url("https://umich.test.instructure.com", "https://canvas-dev.dsc.umich.edu/")
+update_discovery_url("https://canvas-test.it.umich.edu", "https://canvas-dev.dsc.umich.edu/")
 
 

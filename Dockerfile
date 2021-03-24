@@ -11,6 +11,7 @@ COPY . /app/
 ENV TZ=America/Detroit
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-CMD ["./update_accounts.py"]
+# This will need some parameters to actually do anything
+CMD ["python ./update_accounts.py"]
 
 # Done!
