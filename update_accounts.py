@@ -44,12 +44,16 @@ def update_discovery_url(api_url: str, discovery_url: str):
         log.info("Access token is invalid, attempting to refresh!")
         access_token = refresh_token(api_url, TOKEN.get("refresh_token"),
                                      OAUTH.get("client_id"), OAUTH.get("client_secret"), OAUTH.get("redirect_uri"))
+        log.debug(access_token)
         CANVAS = Canvas(api_url, access_token)
         account = CANVAS.get_account(1)
 
+    try:
         # TODO: Make this URL configurable
         account.update_account_auth_settings(
             sso_settings={"auth_discovery_url": discovery_url})
+    except Exception as e:
+        log.error(f"Error updating {api_url} {e.message}")
 
 parser = argparse.ArgumentParser(description='Update Canvas Test/Beta Settings')
 parser.add_argument('canvas_token', type=str, help='Canvas Token File')
