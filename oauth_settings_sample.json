@@ -5,5 +5,9 @@
     "redirect_uri": "https://example.com/oauth_complete",
     "scopes": ["url:PUT|/api/v1/accounts/:account_id/sso_settings", 
           "url:GET|/api/v1/accounts/:id"
-    ]
+    ],
+    "update_discovery_urls": {
+        "https://umich.beta.instructure.com": "",
+        "https://canvas-test.it.umich.edu": "https://canvas-dev.dsc.umich.edu"
+    }
 }
